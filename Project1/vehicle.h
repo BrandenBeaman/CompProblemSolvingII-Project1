@@ -27,7 +27,7 @@ How to use:
     1. Database class should call CheckReservationDay() using a pointer to a vehicle object to check to see if that vehicle is available for a specific day
 	2. Database class then should call CheckReservationNumber() using the same pointer to check to see if that vehicle has less than 3 reservations
 	3. If both checks pass, Database class should call AddReservation() using the same pointer to add the reservation for the specific day
-	(AddReservation() will check reservation critira internally and return true if the reservation was added and false if not)
+	(AddReservation() will check reservation critira internally as well as insuring the day of the reservation is after the current day and returns true if the reservation was added and false if not)
 
 
    
@@ -60,13 +60,15 @@ public:
 
 	vehicle(); // explcit constructor to initalize primative data memebrs
 
-	int  SetVehicleInfo(string userMake, string userModel, int userYear); //method to set vehicle information
+	int  SetVehicleInfo(string userMake, string userModel, int userYear, string userColor); //method to set vehicle information
 
 	bool CheckReservationDay(int day); //method to check if a vehicle is reserved for a specific day, returns true if date is reserved and false if date is available 
 	int  CheckReservationNumber(); //method to check if a vehicle has less than 3 reservations, returns number of reservations for the vehicle
-	bool AddReservation(int day); //method to add a reservation for a specific day, only allowed if CheckReservationDay returns false and CheckReservationNumber returns a value less than 3, returns true if reservation was added and false if not
+	bool AddReservation(int reservationDay, int currentDay); //method to add a reservation for a specific day, only allowed if CheckReservationDay returns false, CheckReservationNumber returns a value less than 3 and Current Day is before Reservation Day, returns true if reservation was added and false if not
 
-	void GetVehicleInfo(string& userMake, string& userModel, int& userYear); // method to get vehicle information
+	void GetReservationDays(int& userDay1, int& userDay2, int& userDay3); //method to get the reservation days for a vehicle, returns the reservation days in the parameters, if a reservation day is not set, it will return 0 for that day 
+	void GetVehicleInfo(string& userMake, string& userModel, int& userYear, string& userColor); // method to get vehicle information
+
 	virtual string GetVehicleSpecs(void) = 0; // pure virtual method for getting the specs of a specific type of vehicle, implemented in dervided classes
 };
 
