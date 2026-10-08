@@ -30,10 +30,6 @@ How to use:
 	(AddReservation() will check reservation critira internally as well as insuring the day of the reservation is after the current day and returns true if the reservation was added and false if not)
 
 
-   
-
-  
-
 */
 #ifndef _VEHICLE_
 #define _VEHICLE_
