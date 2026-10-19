@@ -33,7 +33,7 @@ private:
 public:
 	gasVehicle();// explcit constructor to initalize data memebrs 
 	int SetGasVehicleInfo(float userFuelCap, float userEff);//method to set gas vehicle information
-	string GetVehicleSpecs();//method to get gas vehicle information, returns a string with the propulsion type, fuel capacity and efficiency
+	string GetVehicleSpecs();//method to get gas vehicle information, returns a string with Make, Model, Year, Color, the propulsion type, fuel capacity and efficiency
 };
 
 #endif
