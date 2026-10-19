@@ -41,7 +41,6 @@ using namespace std;
 
 class vehicle
 {
-
 	//private data memebers about each vehicle
 private:
 	string Make;
@@ -50,7 +49,7 @@ private:
 	int Year;
 
 	int ReservationDays[3];//array to hold the days that the vehicle is reserved for, max 3 reservations
-	int NumerOfReservations;//number of reservations for the vehicle
+	int NumberOfReservations;//number of reservations for the vehicle
 
 public:
 
@@ -63,7 +62,7 @@ public:
 	bool AddReservation(int reservationDay, int currentDay); //method to add a reservation for a specific day, only allowed if CheckReservationDay returns false, CheckReservationNumber returns a value less than 3 and Current Day is before Reservation Day, returns true if reservation was added and false if not
 
 	void GetReservationDays(int& userDay1, int& userDay2, int& userDay3); //method to get the reservation days for a vehicle, returns the reservation days in the parameters, if a reservation day is not set, it will return 0 for that day 
-	void GetVehicleInfo(string& userMake, string& userModel, int& userYear, string& userColor); // method to get vehicle information
+	void GetVehicleInfo(string& userMake, string& userModel, int& userYear, string& userColor); // method to get vehicle information, the parameters are passed by reference and will be set to the vehicle's information
 
 	virtual string GetVehicleSpecs(void) = 0; // pure virtual method for getting the specs of a specific type of vehicle, implemented in dervided classes
 };
