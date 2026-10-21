@@ -18,22 +18,9 @@ int electricVehicle::SetElectricVehicleInfo(float userEnergyCap, float userEff)
 	return 0;
 }
 
-string electricVehicle::GetVehicleSpecs()
+void electricVehicle::GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity))
 {
-	string Make, Model, Color;
-	int Year = 0;
-
-	GetVehicleInfo(Make, Model, Year, Color);
-
-	string propulsionType = "EV";
-	ostringstream specs;
-
-	specs << Make << " "
-		<< Model << " "
-		<< Year << " "
-		<< Color << " "
-		<< propulsionType << " "
-		<< fixed << setprecision(1) << EnergyCapacity << " "
-		<< fixed << setprecision(1) << Efficiency;
-	return specs.str();
+	userPropulsionType = PropulsionType;
+	userCapacity = EnergyCapacity;
+	userEfficiency = Efficiency;
 }
