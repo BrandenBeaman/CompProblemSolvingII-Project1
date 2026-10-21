@@ -23,25 +23,26 @@ combination but the total days that can be reserved is 3
 private:
 
 	vehicle* inventory[100]; // array of pointers to vehicle objects
-	int inventorySize; // current size of the inventory
+	int invSize; // current size of the inventory
 	int day;
-	int month;
-	int year;
 
 public:
 
 	//empty constructor creates an empty database with no vehicles and sets the date to 1/1/2023
 	database(void);
 
-	int setDate(int month, int day, int year);
-
 	void nextDay(void);
 
 	// Adds vehicle to the database 
-	int addVehicle(vehicle* vPointer);
+	int addVehicle(vehicle* vPnt);
 
-	//add reservation, returns 0 if successful
-	int addReservation(vehicle* vPointer, int month, int day, int year);
+
+	//searches for vehicle in inventory
+	//if found adds reservation and returns 0
+	//if not found returns -1
+	//if could not add reservation returns -2
+
+	int addReservation(vehicle* vPnt, int resDay);
 
 	//prints only vehicles with reservations in the future
 	void printReservedVehicles(void);

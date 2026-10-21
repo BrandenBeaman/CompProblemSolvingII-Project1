@@ -139,7 +139,11 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="database.cpp" />
+    <ClCompile Include="electricVehicle.cpp" />
+    <ClCompile Include="gasVehicle.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="database.h" />
