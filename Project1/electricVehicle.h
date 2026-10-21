@@ -27,13 +27,14 @@ using namespace std;
 class electricVehicle : public vehicle
 {
 private:
-	float EnergyCapacity; //killowatt-hours
-	float Efficiency;   //miles/kwH
+	float  EnergyCapacity; //killowatt-hours
+	float  Efficiency;   //miles/kwH
+	string PropulsionType = "EV"; //electric vehicle
 
 public:
 	electricVehicle();// explcit constructor to initalize data memebrs 
 	int SetElectricVehicleInfo(float userEnergyCap, float userEff);// method to set electric vehicle information
-	string GetVehicleSpecs(); // virtual method to get electric vehicle information, returns a string with Make, Model, Year, Color, the propulsion type, energy capacity and efficiency
+	void GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity); // virtual method to get electric vehicle information, returns a string with Make, Model, Year, Color, the propulsion type, energy capacity and efficiency
 };
 
 

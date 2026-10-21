@@ -18,22 +18,9 @@ int gasVehicle::SetGasVehicleInfo(float userFuelCap, float userEff)
 	return 0;
 }
 
-string gasVehicle::GetVehicleSpecs()
+void gasVehicle::GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity)
 {
-	string Make, Model, Color;
-	int Year = 0;
-
-	GetVehicleInfo(Make, Model, Year, Color);
-
-	string propulsionType = "ICE";
-	ostringstream specs;
-
-	specs << Make << " " 
-		<< Model << " " 
-		<< Year << " " 
-		<< Color << " "
-		<< propulsionType << " "
-		<< fixed << setprecision(1) << FuelCapacity << " "
-		<< fixed << setprecision(1) << Efficiency;
-	return specs.str();
+	userPropulsionType = PropulsionType;
+	userCapacity = FuelCapacity;
+	userEfficiency = Efficiency;
 }

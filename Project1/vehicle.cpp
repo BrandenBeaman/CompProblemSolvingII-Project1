@@ -70,12 +70,25 @@ void vehicle::GetReservationDays(int& userDay1, int& userDay2, int& userDay3)
 	userDay3 = ReservationDays[2];
 }
 
-void vehicle::GetVehicleInfo(string& userMake, string& userModel, int& userYear, string& userColor)
+void vehicle::GetMake(string& userMake)
 {
 	userMake = Make;
+}
+
+void vehicle::GetModel(string& userModel)
+{
 	userModel = Model;
+}
+
+void vehicle::GetYear(int& userYear)
+{
 	userYear = Year;
+}
+
+void vehicle::GetColor(string& userColor)
+{
 	userColor = Color;
 }
+
 
 

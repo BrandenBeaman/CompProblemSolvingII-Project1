@@ -27,13 +27,14 @@ using namespace std;
 class gasVehicle : public vehicle
 {
 private:
-	float FuelCapacity; //gallons
-	float Efficiency;   //miles/gallon
+	float  FuelCapacity; //gallons
+	float  Efficiency;   //miles/gallon
+	string PropulsionType = "ICE"; //internal combustion engine
 
 public:
 	gasVehicle();// explcit constructor to initalize data memebrs 
 	int SetGasVehicleInfo(float userFuelCap, float userEff);//method to set gas vehicle information
-	string GetVehicleSpecs();//method to get gas vehicle information, returns a string with Make, Model, Year, Color, the propulsion type, fuel capacity and efficiency
+	void GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity);//method to get gas vehicle information, returns a string with Make, Model, Year, Color, the propulsion type, fuel capacity and efficiency
 };
 
 #endif
