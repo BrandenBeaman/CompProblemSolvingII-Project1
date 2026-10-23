@@ -67,7 +67,9 @@ public:
 	void GetYear(int& userYear);
 	void GetColor(string& userColor); 
 
-	virtual void GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity) = 0; // pure virtual method for getting the specs of a specific type of vehicle, implemented in dervided classes
+	virtual void PrintVehicleInfo(void) = 0; // pure virtual method to print vehicle information, implemented in dervided classes
+
+	virtual void GetPropulsion(string& userPropulsionType) = 0; //pure virtual method to get propulsion type, implemented in dervided classes
 };
 
 #endif //_VEHICLE_

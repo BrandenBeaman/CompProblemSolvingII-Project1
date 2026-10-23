@@ -34,7 +34,10 @@ private:
 public:
 	electricVehicle();// explcit constructor to initalize data memebrs 
 	int SetElectricVehicleInfo(float userEnergyCap, float userEff);// method to set electric vehicle information
-	void GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity); // virtual method to get electric vehicle information, returns a string with Make, Model, Year, Color, the propulsion type, energy capacity and efficiency
+	void GetPropulsion(string& userPropulsionType); // virtual method to get propulsion type
+
+	void PrintVehicleInfo(void); //method to print electric vehicle information, implemented in dervided classes
+
 };
 
 

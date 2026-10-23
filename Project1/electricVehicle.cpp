@@ -2,6 +2,7 @@
 #include <sstream> //  for ostringstream
 #include <iomanip> //  for setprecision
 #include "electricVehicle.h"
+#include <iostream>
 
 using namespace std;
 
@@ -18,9 +19,25 @@ int electricVehicle::SetElectricVehicleInfo(float userEnergyCap, float userEff)
 	return 0;
 }
 
-void electricVehicle::GetVehicleSpecs(string& userPropulsionType, float& userEfficiency, float& userCapacity))
+void electricVehicle::GetPropulsion(string& userPropulsionType)
 {
 	userPropulsionType = PropulsionType;
-	userCapacity = EnergyCapacity;
-	userEfficiency = Efficiency;
+}
+
+void electricVehicle::PrintVehicleInfo(void)
+{
+	//get vehicle info from base class
+	string vMake, vModel, vColor;
+	int vYear = 0;
+	//print all data in a formatted manner
+	cout << "Vehicle Info: " << endl;
+	cout << "\nMake: " << vMake << endl;
+	cout << "Model: " << vModel << endl;
+	cout << "Year: " << vYear << endl;
+	cout << "Color: " << vColor << endl;
+	cout << "Propulsion Type: " << PropulsionType << endl;
+	//fixed is a floating point format that uses fixed-point notation
+	// setprecision sets the number of digits to display after the decimal point
+	cout << fixed << setprecision(2) << "Energy Capacity: " << EnergyCapacity << " kWh" << endl;
+	cout << fixed << setprecision(2) << "Efficiency: " << Efficiency << " miles/kWh" << endl;
 }
