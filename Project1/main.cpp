@@ -212,7 +212,10 @@ int main(int argc, char* argv[])
 			} // end case 'c' or 'C'
 			case 'r': case 'R': // Reserve a vehicle
 			{
-				// Prompt user for the vehicle # and day
+				// Prompt user for the vehicle info and day
+				//search for make/mode/year/color to prevent invalid vehicle info from being entered
+				// if no vehicle is found, break out of the case and return to the main menu
+
 				string make, model, propulsion, color;
 				int year, ReserveDay;
 				float eff, cap;
@@ -252,8 +255,10 @@ int main(int argc, char* argv[])
 					<< ". Enter day to reserve > ";
 				cin >> ReserveDay;
 
+				//used to address error codes
 				int Result = 0;
 
+				//seperate different propulsion types to create the correct vehicle object and call the database to add a reservation
 				if (propulsion == "ICE") {
 					gasVehicle* userGasPtr = new gasVehicle();
 					userGasPtr->SetVehicleInfo(make, model, year, color);
