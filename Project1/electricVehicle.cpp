@@ -6,12 +6,14 @@
 
 using namespace std;
 
+// Constructor to initialize primitive data members
 electricVehicle::electricVehicle()
 {
 	EnergyCapacity = 0.0;
 	Efficiency = 0.0;
 }
 
+// Method to set electric vehicle information sets user varibles to the energy capacity and efficiency of the vehicle, returns 0 if successful
 int electricVehicle::SetElectricVehicleInfo(float userEnergyCap, float userEff)
 {
 	EnergyCapacity = userEnergyCap;
@@ -19,16 +21,24 @@ int electricVehicle::SetElectricVehicleInfo(float userEnergyCap, float userEff)
 	return 0;
 }
 
+// Method to get propulsion type, sets user varible to the propulsion type of the vehicle, "EV" for electric vehicles
 void electricVehicle::GetPropulsion(string& userPropulsionType)
 {
 	userPropulsionType = PropulsionType;
 }
 
+// Method to print electric vehicle information
 void electricVehicle::PrintVehicleInfo(void)
 {
 	//get vehicle info from base class
 	string vMake, vModel, vColor;
-	int vYear = 0;
+    int vYear = 0;
+
+	GetMake(vMake);
+	GetModel(vModel);
+	GetYear(vYear);
+	GetColor(vColor);
+	
 	//print all data in a formatted manner
 	cout << "Vehicle Info: " << endl;
 	cout << "\nMake: " << vMake << endl;
@@ -40,4 +50,9 @@ void electricVehicle::PrintVehicleInfo(void)
 	// setprecision sets the number of digits to display after the decimal point
 	cout << fixed << setprecision(2) << "Energy Capacity: " << EnergyCapacity << " kWh" << endl;
 	cout << fixed << setprecision(2) << "Efficiency: " << Efficiency << " miles/kWh" << endl;
+
+	//print reservation days if any
+	int day1, day2, day3;
+	GetReservationDays(day1, day2, day3);
+	cout << "Reservations: " << day1 << ", " << day2 << ", " << day3 << endl;
 }

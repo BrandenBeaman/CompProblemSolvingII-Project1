@@ -28,7 +28,7 @@ How to use:
 	2. Database class then should call CheckReservationNumber() using the same pointer to check to see if that vehicle has less than 3 reservations
 	3. If both checks pass, Database class should call AddReservation() using the same pointer to add the reservation for the specific day
 	(AddReservation() will check reservation critira internally as well as insuring the day of the reservation is after the current day and returns true if the reservation was added and false if not)
-
+	4. Database class should call RemovePastReservations() using the same pointer to remove any reservations that are in the past
 
 */
 #ifndef _VEHICLE_
@@ -52,7 +52,6 @@ private:
 	int NumberOfReservations;//number of reservations for the vehicle
 
 public:
-
 	vehicle(); // explcit constructor to initalize primative data memebrs
 
 	int  SetVehicleInfo(string userMake, string userModel, int userYear, string userColor); //method to set vehicle information
@@ -60,6 +59,7 @@ public:
 	bool CheckReservationDay(int day); //method to check if a vehicle is reserved for a specific day, returns true if date is reserved and false if date is available 
 	int  CheckReservationNumber(); //method to check if a vehicle has less than 3 reservations, returns number of reservations for the vehicle
 	bool AddReservation(int reservationDay, int currentDay); //method to add a reservation for a specific day, only allowed if CheckReservationDay returns false, CheckReservationNumber returns a value less than 3 and Current Day is before Reservation Day, returns true if reservation was added and false if not
+	void RemovePastReservations(int currentDay); //method to remove past reservations, any reservation day that is less than the current day will be removed from the reservation days array and the number of reservations will be updated
 
 	void GetReservationDays(int& userDay1, int& userDay2, int& userDay3); //method to get the reservation days for a vehicle, returns the reservation days in the parameters, if a reservation day is not set, it will return 0 for that day 
 	void GetMake(string& userMake);// method to get vehicle information, the parameters are passed by reference and will be set to the vehicle's information
