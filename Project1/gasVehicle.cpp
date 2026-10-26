@@ -12,12 +12,18 @@ gasVehicle::gasVehicle()
 	FuelCapacity = 0.0;
 	Efficiency = 0.0;
 }
-// Method to set gas vehicle information sets user varibles to the Fuel capacity and efficiency of the vehicle, returns 0 if successful
+// Method to set gas vehicle information sets user varibles to the Fuel capacity and efficiency of the vehicle, returns 0 if successful and returns 1 if invalid values are set (negative) and sets data members to 0.0
 int gasVehicle::SetGasVehicleInfo(float userFuelCap, float userEff)
 {
-	FuelCapacity = userFuelCap;
-	Efficiency = userEff;
-	return 0;
+	if (userFuelCap < 0 || userEff < 0)
+	{
+		return 1; // Return 1 for setting invalid values (negative)
+	}
+	else {
+		FuelCapacity = userFuelCap;
+		Efficiency = userEff;
+		return 0; // Return 0 for successful setting of valid values
+	}
 }
 
 // Method to get propulsion type, sets user varible to the propulsion type of the vehicle, "ICE" for gas vehicles

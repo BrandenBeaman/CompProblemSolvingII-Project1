@@ -13,12 +13,19 @@ electricVehicle::electricVehicle()
 	Efficiency = 0.0;
 }
 
-// Method to set electric vehicle information sets user varibles to the energy capacity and efficiency of the vehicle, returns 0 if successful
+// Method to set electric vehicle information sets user varibles to the energy capacity and efficiency of the vehicle, returns 0 if successful, returns 1 if invalid values are set (negative) and sets data members to 0.0
 int electricVehicle::SetElectricVehicleInfo(float userEnergyCap, float userEff)
 {
-	EnergyCapacity = userEnergyCap;
-	Efficiency = userEff;
-	return 0;
+
+	if (userEnergyCap < 0 || userEff < 0)
+	{
+		return 1; // Return 1 for setting invalid values (negative)
+	}
+	else {
+		EnergyCapacity = userEnergyCap;
+		Efficiency = userEff;
+		return 0; // Return 0 for successful setting of valid values
+	}
 }
 
 // Method to get propulsion type, sets user varible to the propulsion type of the vehicle, "EV" for electric vehicles
