@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="electricVehicle.cpp" />
     <ClCompile Include="gasVehicle.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="UnitTestDatabase.cpp" />
     <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>

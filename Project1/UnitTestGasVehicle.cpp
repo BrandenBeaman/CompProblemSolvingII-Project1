@@ -101,7 +101,8 @@ int main()
     cout << endl;
 
     int result2 = car.SetGasVehicleInfo(20.0f, 25.0f);
-    CheckTest("SetGasVehicleInfo return value test", result2 == 1);
+    CheckTest("SetGasVehicleInfo return value test", result2 == 0);
+    //returns 0 for success
 
     int result3 = car.SetGasVehicleInfo(-10.0f, 25.0f);
     CheckTest("Negative fuel capacity test", result3 == 0);

@@ -33,6 +33,8 @@ public:
 
 	void nextDay(void);
 
+	int getCurrentDay(void);
+
 	// Adds vehicle to the database 
 	int addVehicle(vehicle* vPnt);
 
@@ -62,6 +64,8 @@ public:
 
 	int searchColor(std::string color);
 
+	//prints all vehicles in the inventory then returns 1
+	int printAllVehicles(void);
 
 
 

@@ -6,6 +6,7 @@
 #include "database.h"
 #include "gasVehicle.h"
 #include "electricVehicle.h"
+#include "vehicle.h"
 
 using namespace std;
 
