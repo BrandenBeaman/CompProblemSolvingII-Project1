@@ -213,33 +213,108 @@ int main(int argc, char* argv[])
 			case 'r': case 'R': // Reserve a vehicle
 			{
 				// Prompt user for the vehicle # and day
-				int VehicleNumber, ReserveDay;
-				cout << "Enter vehicle number (shown by I or a search) > ";
-				cin >> VehicleNumber;
-				cout << "Today is day " << TheDatabase.getCurrentDay()
+				string make, model, propulsion, color;
+				int year, ReserveDay;
+				float eff, cap;
+				cout << "\nEnter vehicle Make > ";
+				cin >> make;
+				if(!TheDatabase.searchMake(make)) {
+					cout << "Error! Vehicle not found." << endl;
+					break;
+				}
+				cout << "\n Enter vehicle Model > ";
+				cin >> model;
+				if (!TheDatabase.searchModel(model)) {
+					cout << "Error! Vehicle not found." << endl;
+					break;
+				}
+				cout << "\n Enter vehicle Year > ";
+				cin >> year;
+				if (!TheDatabase.searchYear(year)) {
+					cout << "Error! Vehicle not found." << endl;
+					break;
+				}
+				cout << "\n Enter vehicle Color > ";
+				cin >> color;
+				if (!TheDatabase.searchColor(color)) {
+					cout << "Error! Vehicle not found." << endl;
+					break;
+				}
+				cout << "\n Enter vehicle Propulsion Type (ICE or EV) > ";
+				cin >> propulsion;
+				cout << "\n Enter vehicle capacity (G or kWH) > ";
+				cin >> cap;
+				cout << "\n Enter vehicle efficiency (MPG or MPkWH) > ";
+				cin >> eff;
+
+
+				cout << "\nToday is day " << TheDatabase.getCurrentDay()
 					<< ". Enter day to reserve > ";
 				cin >> ReserveDay;
 
-				// Ask database to make reservation, tell
-				// user what happened based on return code
-				int Result = TheDatabase.addReservation(VehicleNumber, ReserveDay);
-				if (Result == 0)
-				{
-					cout << "Vehicle #" << VehicleNumber << " reserved for day "
-						<< ReserveDay << "." << endl;
-				} // end if()
-				else if (Result == -1)
-				{
-					cout << "Error! There is no vehicle #" << VehicleNumber << "." << endl;
-				} // end if...else if()
-				else
-				{
-					cout << "Error! Reservation not allowed. The day must be after today,"
-						<< endl << "the vehicle can't already be reserved that day, and a"
-						<< endl << "vehicle can have at most 3 future reservations." << endl;
-				} // end if...else()
+				int Result = 0;
+
+				if (propulsion == "ICE") {
+					gasVehicle* userGasPtr = new gasVehicle();
+					userGasPtr->SetVehicleInfo(make, model, year, color);
+					userGasPtr->SetGasVehicleInfo(cap, eff);
+					Result = TheDatabase.addReservation(userGasPtr, ReserveDay);
+					// Ask database to make reservation, tell
+					// user what happened based on return code
+					if (Result == 0) {
+
+						userGasPtr->PrintVehicleInfo();
+
+						cout << "\nReserved for day "
+							<< ReserveDay << "." << endl;
+					} // end if()
+					else if (Result == -1)
+					{
+						cout << "Error! There is no vehicle with this info." << endl;
+					} // end if...else if()
+					else
+					{
+						cout << "Error! Reservation not allowed. The day must be after today,"
+							<< endl << "the vehicle can't already be reserved that day, and a"
+							<< endl << "vehicle can have at most 3 future reservations." << endl;
+						break;
+					} // end if...else()
+				}
+				else if (propulsion == "EV") {
+					electricVehicle* userEvPtr = new electricVehicle();
+					userEvPtr->SetVehicleInfo(make, model, year, color);
+					userEvPtr->SetElectricVehicleInfo(cap, eff);
+					Result = TheDatabase.addReservation(userEvPtr, ReserveDay);
+					// Ask database to make reservation, tell
+					// user what happened based on return code
+					if (Result == 0) {
+
+						userEvPtr->PrintVehicleInfo();
+
+						cout << "\nReserved for day "
+							<< ReserveDay << "." << endl;
+					} // end if()
+					else if (Result == -1)
+					{
+						cout << "Error! There is no vehicle with this info." << endl;
+					} // end if...else if()
+					else
+					{
+						cout << "Error! Reservation not allowed. The day must be after today,"
+							<< endl << "the vehicle can't already be reserved that day, and a"
+							<< endl << "vehicle can have at most 3 future reservations." << endl;
+						break;
+					} // end if...else()
+
+				}
+				else {
+					cout << "Error! Unrecognized propulsion type." << endl;
+					return -3;
+				}
 				break;
-			} // end case 'r' or 'R'
+			}//end case 'r' or 'R'
+
+
 			case 'i': case 'I': // Print the inventory
 			{
 				TheDatabase.printAllVehicles();

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 
+//default constructor creates an empty database with no vehicles and sets the date to day 0
 database::database() {
 	vehicle* inventory = {};
 	invSize = 0;
@@ -32,31 +33,31 @@ int database::addReservation(vehicle* v1pnt, int resDay) {
 	std::string tempStr1, tempStr2;
 	int tempInt1, tempInt2;
 	//search for vPnt in inventory
-	for (auto& v2ref : inventory) {
+	for (int i = 0; i < invSize; i++) {
 		//check propulsion
 		v1pnt->GetPropulsion(tempStr1);
-		v2ref->GetPropulsion(tempStr2);
+		inventory[i]->GetPropulsion(tempStr2);
 		if (tempStr1 == tempStr2) {
 			//check make
 			v1pnt->GetMake(tempStr1);
-			v2ref->GetMake(tempStr2);
+			inventory[i]->GetMake(tempStr2);
 			if (tempStr1 == tempStr2) {
 				//check model
 				v1pnt->GetModel(tempStr1);
-				v2ref->GetModel(tempStr2);
+				inventory[i]->GetModel(tempStr2);
 				if (tempStr1 == tempStr2) {
 					//check year
 					v1pnt->GetYear(tempInt1);
-					v2ref->GetYear(tempInt2);
+					inventory[i]->GetYear(tempInt2);
 					if (tempInt1 == tempInt2) {
 						//check color
 						v1pnt->GetColor(tempStr1);
-						v2ref->GetColor(tempStr2);
+						inventory[i]->GetColor(tempStr2);
 						if (tempStr1 == tempStr2) {
 							//if everything matches
 							// add reservation to the vehicle in the inventory
 							// return 0 for success
-							if (v2ref->AddReservation(resDay, day)) {
+							if (inventory[i]->AddReservation(resDay, day)) {
 								return 0;
 							}
 							//return -2 for failed reservation
@@ -78,9 +79,9 @@ void database::printReservedVehicles(void) {
 	int vYear;
 	float vEff, vCap;
 	//iterate through inventory and print if has reservations
-	for (auto vRef : inventory) {
-		if (vRef->CheckReservationNumber() > 0) {
-			vRef->PrintVehicleInfo();
+	for (int i = 0; i < invSize; i++) {
+		if (inventory[i]->CheckReservationNumber() > 0) {
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
 }
@@ -90,9 +91,9 @@ void database::printUnreservedVehicles(void) {
 	int vYear;
 	float vEff, vCap;
 	//iterate through inventory and print if has reservations
-	for (auto vRef : inventory) {
-		if (vRef->CheckReservationNumber() == 0) {
-			vRef->PrintVehicleInfo();
+	for (int i = 0; i < invSize; i++) {
+		if (inventory[i]->CheckReservationNumber() == 0) {
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
 }
@@ -100,78 +101,78 @@ void database::printUnreservedVehicles(void) {
 int database::searchMake(std::string make) {
 	int count = 0;
 	std::string vMake;
-	for (auto vRef : inventory) {
-		vRef->GetMake(vMake);
+	for (int i = 0; i < invSize; i++) {
+		inventory[i]->GetMake(vMake);
 		if (vMake == make) {
 			count++;
-			vRef->PrintVehicleInfo();
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
-	std::cout << "/n/n" << count << " vehicles found." << std::endl;
+	std::cout << "\n\n" << count << " vehicles found." << std::endl;
 	return count;
 }
 
 int database::searchModel(std::string model){
 	int count = 0;
 	std::string vModel;
-	for (auto vRef : inventory) {
-		vRef->GetModel(vModel);
+	for (int i = 0; i < invSize; i++) {
+		inventory[i]->GetModel(vModel);
 		if (vModel == model) {
 			count++;
-			vRef->PrintVehicleInfo();
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
-	std::cout << "/n/n" << count << " vehicles found." << std::endl;
+	std::cout << "\n\n" << count << " vehicles found." << std::endl;
 	return count;
 }
 
 int database::searchYear(int year){
 	int count = 0;
 	int vYear;
-	for (auto vRef : inventory) {
-		vRef->GetYear(vYear);
+	for (int i = 0; i < invSize; i++) {
+		inventory[i]->GetYear(vYear);
 		if (vYear == year) {
 			count++;
-			vRef->PrintVehicleInfo();
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
-	std::cout << "/n/n" << count << " vehicles found." << std::endl;
+	std::cout << "\n\n" << count << " vehicles found." << std::endl;
 	return count;
 }
 
 int database::searchPropulsion(std::string propulsion) {
 	int count = 0;
 	std::string vProp;
-	for (auto vRef : inventory) {
-		vRef->GetPropulsion(vProp);
+	for (int i = 0; i < invSize; i++) {
+		inventory[i]->GetPropulsion(vProp);
 		if (vProp == propulsion) {
 			count++;
-			vRef->PrintVehicleInfo();
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
-	std::cout << "/n/n" << count << " vehicles found." << std::endl;
+	std::cout << "\n\n" << count << " vehicles found." << std::endl;
 	return count;
 }
 
 int database::searchColor(std::string color) {
 	int count = 0;
 	std::string vColor;
-	for (auto vRef : inventory) {
-		vRef->GetColor(vColor);
+	for (int i = 0; i < invSize; i++) {
+		inventory[i]->GetColor(vColor);
 		if (vColor == color) {
 			count++;
-			vRef->PrintVehicleInfo();
+			inventory[i]->PrintVehicleInfo();
 		}
 	}
-	std::cout << "/n/n" << count << " vehicles found." << std::endl;
+	std::cout << "\n\n" << count << " vehicles found." << std::endl;
 	return count;
 }
 
 
 int database::printAllVehicles(void) {
 	//print all vehicles in the inventory then return 1
-	for (auto vRef : inventory) {
-		vRef->PrintVehicleInfo();
+	for (int i = 0; i < invSize; i++) {
+		inventory[i]->PrintVehicleInfo();
 	}
 	return 1;
 }

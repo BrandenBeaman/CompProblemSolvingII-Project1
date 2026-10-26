@@ -28,14 +28,19 @@ private:
 
 public:
 
-	//empty constructor creates an empty database with no vehicles and sets the date to 1/1/2023
+	//empty constructor creates an empty database with no vehicles and sets the date to day 0
+	//uninitialized data members are set to 0 or null, do not reference them until they are set to valid values
+	//use invSize to do this, if invSize is 0, the database is empty and there are no vehicles in the inventory
 	database(void);
 
+	//used to iterate day by day starting at day 0, increases by 1
 	void nextDay(void);
 
+	//returns the current day, starting at 0
 	int getCurrentDay(void);
 
 	// Adds vehicle to the database 
+	// Returns 0 if successful, 1 if database is full and vehicle could not be added
 	int addVehicle(vehicle* vPnt);
 
 
@@ -43,7 +48,6 @@ public:
 	//if found adds reservation and returns 0
 	//if not found returns -1
 	//if could not add reservation returns -2
-
 	int addReservation(vehicle* vPnt, int resDay);
 
 	//prints only vehicles with reservations in the future
@@ -53,7 +57,7 @@ public:
 	void printUnreservedVehicles(void);
 
 	//search functions, returns # of vehicles found
-
+	//used to verify user information before attempting to make a reservation
 	int searchMake(std::string make);
 
 	int searchModel(std::string model);
@@ -64,7 +68,7 @@ public:
 
 	int searchColor(std::string color);
 
-	//prints all vehicles in the inventory then returns 1
+	//prints info for all vehicles in the inventory then returns 1
 	int printAllVehicles(void);
 
 
