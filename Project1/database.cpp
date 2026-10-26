@@ -15,6 +15,10 @@ void database::nextDay(void) {
 	day++;
 }
 
+int database::getCurrentDay(void) {
+	return day;
+}
+
 int database::addVehicle(vehicle* vPnt) {
 	if (invSize < 100) {
 		inventory[invSize] = vPnt;
@@ -30,8 +34,8 @@ int database::addReservation(vehicle* v1pnt, int resDay) {
 	//search for vPnt in inventory
 	for (auto& v2ref : inventory) {
 		//check propulsion
-		v1pnt->GetPropulsion(tempStr1, 0.0, 0.0);
-		v2ref->GetPropulsion(tempStr2, 0.0, 0.0);
+		v1pnt->GetPropulsion(tempStr1);
+		v2ref->GetPropulsion(tempStr2);
 		if (tempStr1 == tempStr2) {
 			//check make
 			v1pnt->GetMake(tempStr1);
@@ -161,4 +165,13 @@ int database::searchColor(std::string color) {
 	}
 	std::cout << "/n/n" << count << " vehicles found." << std::endl;
 	return count;
+}
+
+
+int database::printAllVehicles(void) {
+	//print all vehicles in the inventory then return 1
+	for (auto vRef : inventory) {
+		vRef->PrintVehicleInfo();
+	}
+	return 1;
 }

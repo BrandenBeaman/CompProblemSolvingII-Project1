@@ -11,7 +11,7 @@ Methods:
 how to use:
    1. Create an object of the electricVehicle class
    2. Use the SetVehicleInfo() method inherited from the vehicle class to set basic vehicle info: Make, Model, Year, Color
-   3. Use the SetElectricVehicleInfo() method to set electric vehicle specific info: EnergyCapacity, Efficiency
+   3. Use the SetElectricVehicleInfo() method to set electric vehicle specific info: EnergyCapacity, Efficiency, both arguments must be positive values, otherwise set will be ignored and the method will return 1
    4. Use the GetVehicleSpecs() method to get a string with the propulsion type, energy capacity and efficiency
 
 -reservation methods are inherited from the vehicle class and can be used to check and add reservations for electricVehicle objects

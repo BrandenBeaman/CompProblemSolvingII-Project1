@@ -11,7 +11,7 @@ Methods:
 how to use:
    1. Create an object of the gasVehicle class
    2. Use the SetVehicleInfo() method inherited from the vehicle class to set basic vehicle info: Make, Model, Year, Color
-   3. Use the SetGasVehicleInfo() method to set gas vehicle specific info: FuelCapacity, Efficiency
+   3. Use the SetGasVehicleInfo() method to set gas vehicle specific info: FuelCapacity, Efficiency, both arguments must be positive values, otherwise set will be ignored and the method will return 1
    4. Use the GetVehicleSpecs() method to get a string with the propulsion type, fuel capacity and efficiency
 
 -reservation methods are inherited from the vehicle class and can be used to check and add reservations for gasVehicle objects
