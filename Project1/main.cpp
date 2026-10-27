@@ -284,6 +284,7 @@ int main(int argc, char* argv[])
 							<< endl << "vehicle can have at most 3 future reservations." << endl;
 						break;
 					} // end if...else()
+					delete userGasPtr;
 				}
 				else if (propulsion == "EV") {
 					electricVehicle* userEvPtr = new electricVehicle();
@@ -310,11 +311,11 @@ int main(int argc, char* argv[])
 							<< endl << "vehicle can have at most 3 future reservations." << endl;
 						break;
 					} // end if...else()
-
+					delete userEvPtr;
 				}
 				else {
 					cout << "Error! Unrecognized propulsion type." << endl;
-					return -3;
+					break;
 				}
 				break;
 			}//end case 'r' or 'R'
